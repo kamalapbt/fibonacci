@@ -1,5 +1,6 @@
 <resources>
     <string name="app_name">Fibonacci</string>
-    <string name="next">Next</string>
-    <!-- TODO: Remove or change this placeholder text -->
+    <string name="next">Next number</string>
+    <string name="introduction">Calculate next fibonacci number.</string>
+    <string name="restore">Restore</string>
 </resources>

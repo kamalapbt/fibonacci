@@ -42,21 +42,25 @@ class FibonacciActivityInstrumentedTest {
                 Assert.assertNotNull("TextView should exist", activity.findViewById<TextView>(R.id.fibonacciTextView))
                 Assert.assertNotNull("Button should exist", activity.findViewById<TextView>(R.id.nextFibonacciButton))
                 Assert.assertEquals("initial state of fibonacci as 0", activity.findViewById<TextView>(R.id.fibonacciTextView).text, "0")
+                Assert.assertEquals("initiial state of calculation should not show", activity.findViewById<TextView>(R.id.fibonacciCalculationTextView).text, "")
 
                 activity.findViewById<TextView>(R.id.nextFibonacciButton).performClick()
-                Assert.assertEquals("first fibonacci should update to textview", activity.findViewById<TextView>(R.id.fibonacciTextView).text, "1")
+                Assert.assertEquals("first fibonacci should update result to textview", activity.findViewById<TextView>(R.id.fibonacciTextView).text, "1")
+                Assert.assertEquals("first fibonacci should not show calculation to textview", activity.findViewById<TextView>(R.id.fibonacciCalculationTextView).text, "")
 
                 activity.findViewById<TextView>(R.id.nextFibonacciButton).performClick()
-                Assert.assertEquals("second fibonacci should update to textview", activity.findViewById<TextView>(R.id.fibonacciTextView).text, "1 = 0 + 1")
+                Assert.assertEquals("second fibonacci should update result to textview", activity.findViewById<TextView>(R.id.fibonacciTextView).text, "1")
+                Assert.assertEquals("second fibonacci should update calculation to textview", activity.findViewById<TextView>(R.id.fibonacciCalculationTextView).text, "0 + 1")
 
                 //--Orientation changes to LANA
                 val newOrientation = if(activity.requestedOrientation == ActivityInfo.SCREEN_ORIENTATION_REVERSE_PORTRAIT) ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE else ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
                 activity.setRequestedOrientation(newOrientation)
-                Assert.assertEquals("orientation changes should not reset data", activity.findViewById<TextView>(R.id.fibonacciTextView).text, "1 = 0 + 1")
+                Assert.assertEquals("orientation changes should not reset result data", activity.findViewById<TextView>(R.id.fibonacciTextView).text, "1")
+                Assert.assertEquals("orientation changes should not reset calculation data", activity.findViewById<TextView>(R.id.fibonacciCalculationTextView).text, "0 + 1")
 
                 activity.findViewById<TextView>(R.id.nextFibonacciButton).performClick()
-                Assert.assertEquals("third fibonacci should update to textview", activity.findViewById<TextView>(R.id.fibonacciTextView).text, "2 = 1 + 1")
-
+                Assert.assertEquals("third fibonacci should update result to textview", activity.findViewById<TextView>(R.id.fibonacciTextView).text, "2")
+                Assert.assertEquals("third fibonacci calculation should update calculation to textview", activity.findViewById<TextView>(R.id.fibonacciCalculationTextView).text, "1 + 1")
             })
 
         }
