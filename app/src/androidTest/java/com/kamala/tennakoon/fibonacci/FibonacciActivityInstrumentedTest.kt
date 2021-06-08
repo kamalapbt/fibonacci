@@ -52,7 +52,6 @@ class FibonacciActivityInstrumentedTest {
                 Assert.assertEquals("second fibonacci should update result to textview", activity.findViewById<TextView>(R.id.fibonacciTextView).text, "1")
                 Assert.assertEquals("second fibonacci should update calculation to textview", activity.findViewById<TextView>(R.id.fibonacciCalculationTextView).text, "0 + 1")
 
-                //--Orientation changes to LANA
                 val newOrientation = if(activity.requestedOrientation == ActivityInfo.SCREEN_ORIENTATION_REVERSE_PORTRAIT) ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE else ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
                 activity.setRequestedOrientation(newOrientation)
                 Assert.assertEquals("orientation changes should not reset result data", activity.findViewById<TextView>(R.id.fibonacciTextView).text, "1")
