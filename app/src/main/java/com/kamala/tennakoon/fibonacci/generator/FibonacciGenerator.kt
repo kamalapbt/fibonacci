@@ -1,8 +1,8 @@
-package com.kamala.tennakoon.fibonacci.utils
+package com.kamala.tennakoon.fibonacci.generator
 
 import com.kamala.tennakoon.fibonacci.model.FibonacciNumber
 
-interface FibonacciSeries {
+interface FibonacciGenerator {
     fun getFibonacci(index: Int): FibonacciNumber?
 
 }

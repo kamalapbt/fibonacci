@@ -1,11 +1,11 @@
-package com.kamala.tennakoon.fibonacci.utils
+package com.kamala.tennakoon.fibonacci.generator
 
 import com.kamala.tennakoon.fibonacci.model.FibonacciNumber
 import org.junit.Assert
 import org.junit.Test
 
-class FibonacciGeneratorUnitTest {
-    private val fibonacciGenerator: FibonacciGenerator = FibonacciGenerator()
+class FibonacciGeneratorImpUnitTest {
+    private val fibonacciGenerator: FibonacciGeneratorImp = FibonacciGeneratorImp()
 
     @Test
     fun testGetFibonacci() {

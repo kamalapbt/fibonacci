@@ -2,7 +2,7 @@ package com.kamala.tennakoon.fibonacci.viewmodel
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.kamala.tennakoon.fibonacci.model.FibonacciNumber
-import com.kamala.tennakoon.fibonacci.utils.FibonacciGenerator
+import com.kamala.tennakoon.fibonacci.generator.FibonacciGeneratorImp
 import org.junit.Assert
 import org.junit.Before
 import org.junit.Rule
@@ -22,7 +22,7 @@ class FibonacciViewModelUnitTest {
     var rule: TestRule = InstantTaskExecutorRule()
 
     @Mock
-    lateinit var fibonacciGenerator: FibonacciGenerator
+    lateinit var fibonacciGenerator: FibonacciGeneratorImp
 
     private lateinit var fibonacciViewModel: FibonacciViewModel
 
@@ -43,19 +43,19 @@ class FibonacciViewModelUnitTest {
         whenever(fibonacciGenerator.getFibonacci(2)).thenReturn(secondFibonacciNumber)
         whenever(fibonacciGenerator.getFibonacci(3)).thenReturn(thirdFibonacciNumber)
 
-        fibonacciViewModel.getFibonacciNumber()
+        fibonacciViewModel.getFibonacciNumber(0)
         then(fibonacciGenerator).should(times(1)).getFibonacci(0)
         Assert.assertEquals("0th fibonacci data should be set", zeroFibonacciNumber, fibonacciViewModel.fibonacci.value)
 
-        fibonacciViewModel.getFibonacciNumber()
+        fibonacciViewModel.getFibonacciNumber(1)
         then(fibonacciGenerator).should(times(1)).getFibonacci(1)
         Assert.assertEquals("1st fibonacci data should be set", firstFibonacciNumber, fibonacciViewModel.fibonacci.value)
 
-        fibonacciViewModel.getFibonacciNumber()
+        fibonacciViewModel.getFibonacciNumber(2)
         then(fibonacciGenerator).should(times(1)).getFibonacci(2)
         Assert.assertEquals("2nd fibonacci data should be set", secondFibonacciNumber, fibonacciViewModel.fibonacci.value)
 
-        fibonacciViewModel.getFibonacciNumber()
+        fibonacciViewModel.getFibonacciNumber(3)
         then(fibonacciGenerator).should(times(1)).getFibonacci(3)
         Assert.assertEquals("3rd fibonacci data should be set", thirdFibonacciNumber, fibonacciViewModel.fibonacci.value)
     }
@@ -68,9 +68,9 @@ class FibonacciViewModelUnitTest {
         whenever(fibonacciGenerator.getFibonacci(0)).thenReturn(zeroFibonacciNumber)
 
 
-        fibonacciViewModel.getFibonacciNumber()
-        fibonacciViewModel.getFibonacciNumber()
-        fibonacciViewModel.getFibonacciNumber()
+        fibonacciViewModel.getFibonacciNumber(0)
+        fibonacciViewModel.getFibonacciNumber(1)
+        fibonacciViewModel.getFibonacciNumber(2)
         Assert.assertEquals("set have any of fibonacci", anyFibonacciNumber, fibonacciViewModel.fibonacci.value)
 
         fibonacciViewModel.resetFibonacciNumber()
